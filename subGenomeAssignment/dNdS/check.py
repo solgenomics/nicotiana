@@ -8,6 +8,7 @@ parser.add_option("-b","--blast",action="store",type="string",dest="blast",
                   help ="Path to the file that specifies recirpocal best hits based on blast result")
 (options,args) = parser.parse_args()
 
+
 pair = {}
 with open(options.HEB) as HEB:
     line = HEB.readline()
