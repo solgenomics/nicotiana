@@ -2,13 +2,15 @@
 from optparse import OptionParser
 import sys
 from os import walk
-
+import os
 
 parser = OptionParser()
 parser.add_option("--htseq",action="store",type="string",dest="htseq",
                   help="Path to directories that contain htseq count files.")
 parser.add_option("--go",action="store",type="string",dest="go",
                   help ="Path to the gene2GO mapping  file.")
+parser.add_option("--pair",action="store",type="string",dest="gPairs",
+                  help="Path to files specifying homeologous gene pairs")
 (options,args) = parser.parse_args()
 
 map_file = sys.argv[1]
@@ -55,4 +57,14 @@ if options.go != None:
                 line = go_in.readline()
 
 
-            
+if options.gPairs != None:
+    for file in options.gPairs.split(','):
+        with open(file) as pair_in:
+            with open(f'{os.path.basename(file)}.newAnnot','w') as pair_out:
+                line = pair_in.readline()
+                while line:
+                    g1, g2 = line.strip().split('\t')
+                    pair_out.write(f'{map[g1]}\t{map[g2]}\n')
+                    line = pair_in.readline()
+
+
