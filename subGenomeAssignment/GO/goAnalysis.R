@@ -16,17 +16,17 @@ geneList = function(Infile, col){
 }
 
 ### GO enrichment analysis
-setwd("C:/Users/10453/source/repos/subgenomeAssignment/GO")
+setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
 library(topGO)
-geneID2GO <- readMappings(file = "Ntab.gene2go")
+geneID2GO <- readMappings(file = "Ntab.gene2go.newAnnot")
 # the gene universe is given by the following line
 # A total of 34056 genes get one or more GO terms assigned to it
 geneNames = names(geneID2GO)
-gene.of.interest = geneList("HEB.Shoot_ZT12.towards.Ntom.txt", 2)
+gene.of.interest = geneList("HEB.meJA_T2.towards.Ntom.txt", 2)
 gene.of.interest = as.integer(geneNames %in% gene.of.interest)
 gene.of.interest = factor(gene.of.interest)
 names(gene.of.interest) = geneNames # make it intno a named vector
-GOdata = new("topGOdata", ontology="MF", allGenes=gene.of.interest,
+GOdata = new("topGOdata", ontology="BP", allGenes=gene.of.interest,
              annot=annFUN.gene2GO, gene2GO=geneID2GO)
 test.stat = new("classicCount", testStatistic = GOFisherTest, name = "Fisher test")
 resultFisher = getSigGroups(GOdata, test.stat)

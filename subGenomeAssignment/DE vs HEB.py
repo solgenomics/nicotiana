@@ -13,30 +13,42 @@ parser.add_option("--fdr",action="store",type="float",dest="fdr",default=0.05,
                   help="FDR")
 parser.add_option("--csv",action="store",type="string",dest="csv",
                   help="Path to the csv file as produced by DESeq2")
-parser.add_option("-n","--name",action="store",type="string",dest="experimental condition",
+parser.add_option("-n","--name",action="store",type="string",dest="name",
                   help="Such as meJA_T2, etc.")
 (options,args) = parser.parse_args()
 
 def getGeneSetFromHEB(file, col):
-    gl = {}
+    gl = set()
     with open(file) as f:
         line = f.readline()
         while line:
-            gl.append(line.strip().split('\t')[col])
+            gl.add(line.strip().split('\t')[col])
             line = f.readline()
     return gl
 
 def getGeneSetFromCSV(file, fdr):
+    gl = set()
     with open(file, newline='') as csvfile:
         r = csv.reader(csvfile, delimiter=',')
+        first = True
         for row in r:
-            print(row)
+            if not first: # omit the header line
+                gene,mean,LFC,lfcSE,stat,p,padj = row
+                if padj != 'NA' and float(padj) < fdr:
+                    gl.add(gene)
+            else:
+                first = False
+    return gl
 
 toNsyl,toNtom = options.HEB.split(',')
 g2Nsyl = getGeneSetFromHEB(toNsyl,0)
 g2Ntom = getGeneSetFromHEB(toNtom,1)
 DEGene = getGeneSetFromCSV(options.csv, options.fdr)
-# now process the given csv file (output from DESeq2)
+fig = plt.figure()
+v = venn3([g2Nsyl,g2Ntom,DEGene], set_labels=("towards Nsyl", "towards Ntom", "DE"))
+plt.title(f'Venn Diagram of HEB and DE Genes for {options.name}')
+plt.savefig(f'Venn Diagram of HEB and DE Genes for {options.name}.jpg',dpi=300, format='jpg',quality=95)
+
 
 
 
