@@ -174,9 +174,9 @@ def compExpr(expr1, expr2):
     p_sorted = [gptwo.pValue for gptwo in gpTwoL]
     q_vals = numGp*np.array(p_sorted)/m
 
-    valid_p = list(itertools.compress(p_sorted, (q_vals < 0.1).tolist()))
+    valid_p = list(itertools.compress(p_sorted, (q_vals < 0.05).tolist()))
     if len(valid_p) == 0:
-        print('No gene has statistically significant change in bias expression at FDR=0.1')
+        print('No gene has statistically significant change in bias expression at FDR=0.05')
         print('A plot of p-values are provided for reference.')
         #print(f'q values{q_vals}')
         #print(f'sorted p values {p_sorted}')

@@ -71,6 +71,6 @@ if len(experiments) == 3:
 
 if len(experiments) == 2:
     gffOp.draw_venn2(experiments)
-    compExpr(experiments[0], experiments[1])
+    #compExpr(experiments[0], experiments[1])
 
 
