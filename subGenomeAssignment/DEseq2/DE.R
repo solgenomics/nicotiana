@@ -1,29 +1,9 @@
 ## DE analysis using DESeq2
 ## input data format: htseq-count output
-go = function(gList){
-  ### GO enrichment analysis
-  setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
-  library(topGO)
-  geneID2GO <- readMappings(file = "Ntab.gene2go.newAnnot")
-  # the gene universe is given by the following line
-  # A total of 34056 genes get one or more GO terms assigned to it
-  geneNames = names(geneID2GO)
-  gene.of.interest = gList
-  gene.of.interest = as.integer(geneNames %in% gene.of.interest)
-  gene.of.interest = factor(gene.of.interest)
-  names(gene.of.interest) = geneNames # make it intno a named vector
-  GOdata = new("topGOdata", ontology="BP", allGenes=gene.of.interest,
-               annot=annFUN.gene2GO, gene2GO=geneID2GO)
-  test.stat = new("classicCount", testStatistic = GOFisherTest, name = "Fisher test")
-  resultFisher = getSigGroups(GOdata, test.stat)
-  pvals = score(resultFisher)
-  allRes = GenTable(GOdata, classic = resultFisher,
-                    orderBy = "classic", ranksOf = "classic", topNodes = 20)
-  return (allRes)
-}
+source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModule.R")
 
 fdr = 0.1
-dir.htseq = "C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/DEseq2/htseq"
+dir.htseq = "C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/DEseq2/htseq/Control vs meJA(NC95)"
 files.htseq = grep("htseq",list.files(dir.htseq),value=TRUE)
 condition = c("Control_T0","Control_T0","Control_T0",
               "Control_T2","Control_T2","Control_T2",
@@ -49,7 +29,7 @@ ddsHTSeq$condition <- relevel(ddsHTSeq$condition, ref = "Control_T6")
 dds = DESeq(ddsHTSeq)
 result = results(dds)
 sig.gene.t6.vs.t6 = rownames(result[which(result$padj < fdr),])
-go.sig.t6.vs.t6 = go(sig.gene.t6.vs.t6)
+go.sig.t6.vs.t6 = go(sig.gene.t6.vs.t6) # calling function written in goModule.R
 
 resOrdered = result[order(result$padj),]
 # write the results to output
@@ -70,8 +50,6 @@ go.sig.t2.vs.t2 = go(sig.gene.t2.vs.t2)
 resOrdered = result[order(result$padj),]
 # write the results to output
 write.csv(as.data.frame(resOrdered), file="Control_T2.vs.meJA_T2.csv")
-
-
 
 
 
