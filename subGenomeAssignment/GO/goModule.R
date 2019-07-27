@@ -23,7 +23,7 @@ go = function(gList){
   ### GO enrichment analysis
   setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
   library(topGO)
-  geneID2GO <- readMappings(file = "Ntab.gene2go.newAnnot")
+  geneID2GO <- readMappings(file = "gene2go.ahrd")
   # the gene universe is given by the following line
   # A total of 34056 genes get one or more GO terms assigned to it
   geneNames = names(geneID2GO)

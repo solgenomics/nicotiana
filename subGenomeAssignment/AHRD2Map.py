@@ -9,7 +9,7 @@ with open(sys.argv[1]) as ahrd:
                 temp = line.strip().split('\t')
                 if len(temp) == 3:
                     protID, _, go = temp
-                    go = go.split(' ,')
+                    go = go.split(', ')
                     go = ",".join(go)
                     out.write(f'{protID[:-2]}\t{go}\n')
 

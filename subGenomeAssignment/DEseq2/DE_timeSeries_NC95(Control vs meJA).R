@@ -16,4 +16,4 @@ sampleTable <- data.frame(sampleName = files.htseq,
 library("DESeq2")
 ddsHTSeq <- DESeqDataSetFromHTSeqCount(sampleTable = sampleTable,
                                        directory = dir.htseq,
-                                       design= ~ time+treat+time:treat)
+                                       design= ~ time + treat + time:treat)

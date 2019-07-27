@@ -7,6 +7,7 @@ import itertools
 from operator import attrgetter
 import sys
 import gffOp
+import csv
 
 class genePair(object):
     def __init__(self, homeolog1, homeolog2, count1, count2, len1, len2, isTestable):
@@ -19,6 +20,7 @@ class genePair(object):
         self.isTestable = isTestable
         self.testStats = 0
         self.pValue = 0
+        self.qValue = 0
         self.HEB = 0
         self.isSig = False
         
@@ -36,6 +38,9 @@ class genePair(object):
 
     def setHEB(self, b):
         self.HEB = b
+
+    def setQvalue(self, q):
+        self.qValue = q
 
     def isSignificant(self):
         self.isSig = True
@@ -96,21 +101,39 @@ class experiment(object):
         m = np.arange(1,numGene+1,1)
         q_vals = numGene*np.array(p_sorted)/m
         p_cut = max(list(itertools.compress(p_sorted, (q_vals < alpha).tolist())))
-        
-        with open(f'HEB.{self.name}.towards Nsyl.txt','w') as out1:
-            with open(f'HEB.{self.name}.towards Ntom.txt','w') as out2:
-                i = 0
-                p = p_sorted[i]
-                while p <= p_cut:
-                    if testList[i].HEB > 0:
-                        out1.write('{}\t{}\n'.format(testList[i].h1, testList[i].h2))
-                    else:
-                        out2.write('{}\t{}\n'.format(testList[i].h1, testList[i].h2))
+        bias_sig = [g.HEB for g in testList if g.pValue <= p_cut]
 
-                    bias_sig.append(testList[i].HEB)
-                    testList[i].isSignificant()
-                    i += 1
-                    p = p_sorted[i]
+        # write test result to csv
+        with open(f'HEB.{self.name}.towards.Nsyl.csv','w',newline='') as Nsyl_csv:
+            with open(f'HEB.{self.name}.towards.Ntom.csv','w',newline='') as Ntom_csv:
+                Nsyl_writer = csv.writer(Nsyl_csv, delimiter=',')
+                Ntom_writer = csv.writer(Ntom_csv, delimiter=',')
+                Nsyl_writer.writerow(['Nsyl','Ntom','HEB','p_value','q_value'])
+                Ntom_writer.writerow(['Nsyl','Ntom','HEB','p_value','q_value'])
+                index = 0
+                for gp in testList:
+                    gp.setQvalue(q_vals[index]) #because testList is sorted by qValue, so this is fine
+                    index += 1
+                    if gp.HEB > 0:
+                        Nsyl_writer.writerow([gp.h1, gp.h2, gp.HEB, gp.pValue, gp.qValue])
+                    elif gp.HEB < 0:
+                        Ntom_writer.writerow([gp.h1, gp.h2, gp.HEB, gp.pValue, gp.qValue])
+
+
+        #with open(f'HEB.{self.name}.towards Nsyl.txt','w') as out1:
+        #    with open(f'HEB.{self.name}.towards Ntom.txt','w') as out2:
+        #        i = 0
+        #        p = p_sorted[i]
+        #        while p <= p_cut:
+        #            if testList[i].HEB > 0:
+        #                out1.write('{}\t{}\n'.format(testList[i].h1, testList[i].h2))
+        #            else:
+        #                out2.write('{}\t{}\n'.format(testList[i].h1, testList[i].h2))
+
+        #            bias_sig.append(testList[i].HEB)
+        #            testList[i].isSignificant()
+        #            i += 1
+        #            p = p_sorted[i]
             
         self.__plot(bias_all, bias_sig)
 
