@@ -3,6 +3,13 @@
 ### Read a file that contains a list of gene pairs of interest, 
 ### and return a R list object of these genes of interest
 ### This function is specifically written for the output of HEB test.
+goFromCSV = function(csv, ncol, fdr){
+  csv.file = read.csv(file=csv, sep=",", header=TRUE)
+  #print(colnames(csv.file))
+  glist = csv.file[which(csv.file$q_value <= fdr),][,ncol]
+  return (go(glist))
+}
+
 goFromFile = function(Infile, col){
   gene.list = list()
   con = file(Infile, "r")
@@ -20,6 +27,7 @@ goFromFile = function(Infile, col){
 
 ### Given a list of genes, return the result of GO Enrichment Analysis.
 go = function(gList){
+  #print(gList)
   ### GO enrichment analysis
   setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
   library(topGO)

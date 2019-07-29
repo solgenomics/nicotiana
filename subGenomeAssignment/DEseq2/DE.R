@@ -33,7 +33,7 @@ go.sig.t6.vs.t6 = go(sig.gene.t6.vs.t6) # calling function written in goModule.R
 
 resOrdered = result[order(result$padj),]
 # write the results to output
-write.csv(as.data.frame(resOrdered), file="Control_T6.vs.meJA_T6.csv")
+#write.csv(as.data.frame(resOrdered), file="Control_T6.vs.meJA_T6.csv")
 
 
 
@@ -49,7 +49,7 @@ go.sig.t2.vs.t2 = go(sig.gene.t2.vs.t2)
 
 resOrdered = result[order(result$padj),]
 # write the results to output
-write.csv(as.data.frame(resOrdered), file="Control_T2.vs.meJA_T2.csv")
+#write.csv(as.data.frame(resOrdered), file="Control_T2.vs.meJA_T2.csv")
 
 
 
@@ -63,7 +63,7 @@ go.sig.t24.vs.t24 = go(sig.gene.t6.vs.t6)
 
 resOrdered = result[order(result$padj),]
 # write the results to output
-write.csv(as.data.frame(resOrdered), file="Control_T24.vs.meJA_T24.csv")
+#write.csv(as.data.frame(resOrdered), file="Control_T24.vs.meJA_T24.csv")
 
 
 

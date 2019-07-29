@@ -17,6 +17,26 @@ ddsHTSeq = DESeqDataSetFromHTSeqCount(sampleTable = sampleTable,
                                        directory = dir.htseq,
                                        design= ~ time + strain + strain:time)
 
+# Do some exploratory analysis first
+rld = rlog(ddsHTSeq)
+# calculate Euclidean distance between each sample
+sampleDist = dist(t(assay(rld)))
+# draw heatmap of sample distance
+library("pheatmap")
+library("RColorBrewer")
+sampleDistMatrix <- as.matrix( sampleDist )
+rownames(sampleDistMatrix) <- paste( genotype, time, sep="-" )
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDist,
+         clustering_distance_cols=sampleDist,
+         col=colors)
+
+
+
+
+
 # The LRT test here identifies genes that show different expression profile
 # between the two genotypes (NC95&NC95_nic) over time (at one or multiple time points)
 dds.LRT = DESeq(ddsHTSeq, test="LRT", reduced = ~ time + strain)

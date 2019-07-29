@@ -39,8 +39,10 @@ class genePair(object):
     def setHEB(self, b):
         self.HEB = b
 
-    def setQvalue(self, q):
+    def setQvalue(self, q, alpha):
         self.qValue = q
+        if q <= alpha:
+            self.isSignificant()
 
     def isSignificant(self):
         self.isSig = True
@@ -112,7 +114,7 @@ class experiment(object):
                 Ntom_writer.writerow(['Nsyl','Ntom','HEB','p_value','q_value'])
                 index = 0
                 for gp in testList:
-                    gp.setQvalue(q_vals[index]) #because testList is sorted by qValue, so this is fine
+                    gp.setQvalue(q_vals[index], alpha) #because testList is sorted by qValue, so this is fine
                     index += 1
                     if gp.HEB > 0:
                         Nsyl_writer.writerow([gp.h1, gp.h2, gp.HEB, gp.pValue, gp.qValue])
