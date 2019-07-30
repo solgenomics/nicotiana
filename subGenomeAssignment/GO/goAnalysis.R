@@ -5,4 +5,4 @@ source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModul
 ### Otherwise please change to the appropriate working directory.
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
 #go.res = goFromFile("HEB.Shoot_ZT12.towards.Ntom.txt", 2)
-go.res = goFromCSV("HEB.meJA_T6.towards.Ntom.csv", 2, 0.05)
+go.res = goFromCSV("HEB.Root_ZT12.towards.Nsyl.csv", 1, 0.05)

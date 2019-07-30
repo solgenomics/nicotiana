@@ -45,6 +45,6 @@ go = function(gList){
   resultFisher = getSigGroups(GOdata, test.stat)
   pvals = score(resultFisher)
   allRes = GenTable(GOdata, classic = resultFisher,
-                    orderBy = "classic", ranksOf = "classic", topNodes = 20)
+                    orderBy = "classic", ranksOf = "classic", topNodes = 40)
   return (allRes)
 }
