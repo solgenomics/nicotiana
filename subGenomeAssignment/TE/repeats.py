@@ -128,8 +128,9 @@ class repeatCal(object):
         plt.hist(genDen_1, bins=bin, color='#0000CD', label=f'{name1}',alpha=0.5, density=True, cumulative=True, histtype='step')
         plt.hist(genDen_2, bins=bin, color='#FF0000', label=f'{name2}',alpha=0.5, density=True, cumulative=True, histtype='step')
         plt.xlabel('TE Density')
+        plt.ylabel('cdf')
         plt.title('TE Density Surrounding Genic Region')
-        plt.legend(loc='upper right', fontsize='small') 
+        plt.legend(loc='lower right', fontsize='large') 
         plt.text(0.0,0.7,'K-S test={:.3f}(p={:.2E})'.format(stat, p_value))
         plt.savefig(f'TEDensity.hist.cdf.{name1} vs {name2}.jpg', dpi=300, format='jpg', quality=95)
 

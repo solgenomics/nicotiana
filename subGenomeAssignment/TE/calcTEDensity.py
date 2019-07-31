@@ -55,22 +55,22 @@ Ntom = parseFasta(fasta2)
 obj.drawCDF(Nsyl, Ntom, 'Nsyl', 'Ntom')
 # For drawCDFByChrom, the first argument is chromsome identified as belonging to Nsyl
 # and the second is identified as belonging to Ntom
-obj.drawCDFByChrom('Nitab01','Nitab23')
-obj.drawCDFByChrom('Nitab10','Nitab02')
-obj.drawCDFByChrom('Nitab16','Nitab12')
-obj.drawCDFByChrom('Nitab03','Nitab18')
-obj.drawCDFByChrom('Nitab06','Nitab04')
-obj.drawCDFByChrom('Nitab11','Nitab13')
+#obj.drawCDFByChrom('Nitab01','Nitab23')
+#obj.drawCDFByChrom('Nitab10','Nitab02')
+#obj.drawCDFByChrom('Nitab16','Nitab12')
+#obj.drawCDFByChrom('Nitab03','Nitab18')
+#obj.drawCDFByChrom('Nitab06','Nitab04')
+#obj.drawCDFByChrom('Nitab11','Nitab13')
 
 
-list1 = []
-list2 = []
-with open('rbh.v1.blastp') as pair:
-    line = pair.readline()
-    while line:
-        g1, g2 = line.strip().split('\t')
-        list1.append(g1)
-        list2.append(g2)
-        line = pair.readline()
+#list1 = []
+#list2 = []
+#with open('rbh.v1.blastp') as pair:
+#    line = pair.readline()
+#    while line:
+#        g1, g2 = line.strip().split('\t')
+#        list1.append(g1)
+#        list2.append(g2)
+#        line = pair.readline()
 
-obj.drawCDF(list1, list2, 'Nsyl_homeolog', 'Ntom_homeolog')
+#obj.drawCDF(list1, list2, 'Nsyl_homeolog', 'Ntom_homeolog')
