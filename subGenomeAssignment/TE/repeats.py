@@ -138,3 +138,22 @@ class repeatCal(object):
         genList1 = [g for g,d in self.geneDict.items() if chrom1 in g]
         genList2 = [g for g,d in self.geneDict.items() if chrom2 in g]
         self.drawCDF(genList1, genList2, chrom1, chrom2)
+
+    def drawDotPlot(self, gPairFile):
+        gDenNsyl = []
+        gDenNtom = []
+        with open(gPairFile) as f:
+            line = f.readline()
+            while line:
+                s,t = line.strip().split('\t')
+                gNsyl.append(self.geneDict[s])
+                gNtom.append(self.geneDict[t])
+                line = f.readline()
+
+        fig = plt.figure()
+        plt.scatter(gDenNtom, gDenNsyl, s=(plt.rcParams['lines.markersize'] ** 2)/16)
+        plt.xlabel('TE density of Ntom homeologs')
+        plt.ylabel('TE density of Nsyl homeologs')
+        plt.title('TE Density Comparison between Homeologous Gene Pairs')
+        plt.savefig(f'TE Density Comp.jpg',dpi=300,format='jpg', quality=95)
+

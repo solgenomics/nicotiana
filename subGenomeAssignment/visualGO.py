@@ -48,3 +48,25 @@ GoList_CC = [('ribonuclease P complex', 0.0061),('H4/H2A histone acetyltransfera
              ('endoribonuclease complex', 0.0166),('endonuclease complex', 0.0166)]
 visual(GoList_BP, GoList_MF, GoList_CC, 'Root', 'Ntom')
 
+# Leaf, biased towards Nsyl
+#GoList_BP = [('', ),('', ),
+#             ('', ),('', ),
+#             ('', ),('', )]
+#GoList_MF = [('', ),('', ),
+#             ('', ),('', ),
+#             ('', ),('', )]
+#GoList_CC = [('', ),('', ),
+#             ('', ),('', )]
+#visual(GoList_BP, GoList_MF, GoList_CC, 'Leaf', 'Nsyl')
+
+# Leaf, biased towards Ntom
+
+#GoList_BP = [('', ),('', ),
+#             ('', ),('', ),
+#             ('', ),('', )]
+#GoList_MF = [('', ),('', ),
+#             ('', ),('', ),
+#             ('', ),('', )]
+#GoList_CC = [('', ),('', ),
+#             ('', ),('', )]
+#visual(GoList_BP, GoList_MF, GoList_CC, 'Leaf', 'Ntom')

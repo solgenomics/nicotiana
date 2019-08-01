@@ -31,6 +31,8 @@ parser.add_option('-s','--size',action='store',type='string',dest='chromSize',
                   help='Path to the chromosome size file')
 parser.add_option('-f',action="store_true",dest="isFasta", default=False,
                   help="If the gene list is given in fasta format, set -f")
+parser.add_option('-p',action="store", type="string", dest="pair",
+                  help="Path to files specifying homeologous gene pairs")
 (options,args) = parser.parse_args()
 
 obj = repeatCal(options.winSize, options.chromSize, options.repeats, options.gff)
@@ -52,7 +54,8 @@ fasta1, fasta2 = options.geneList.split(',')
 Nsyl = parseFasta(fasta1)
 Ntom = parseFasta(fasta2)
 # list of TE density around each gene (unordered)
-obj.drawCDF(Nsyl, Ntom, 'Nsyl', 'Ntom')
+#obj.drawCDF(Nsyl, Ntom, 'Nsyl', 'Ntom')
+obj.drawDotPlot(options.pair)
 # For drawCDFByChrom, the first argument is chromsome identified as belonging to Nsyl
 # and the second is identified as belonging to Ntom
 #obj.drawCDFByChrom('Nitab01','Nitab23')
