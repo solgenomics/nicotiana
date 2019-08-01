@@ -49,10 +49,10 @@ def parseFasta(fastaFile):
 
 
 # Assume the first file is Nsyl, and the second file is Ntom
-fasta1, fasta2 = options.geneList.split(',')
+#fasta1, fasta2 = options.geneList.split(',')
 # list of genes belong to Nsyl and Ntom
-Nsyl = parseFasta(fasta1)
-Ntom = parseFasta(fasta2)
+#Nsyl = parseFasta(fasta1)
+#Ntom = parseFasta(fasta2)
 # list of TE density around each gene (unordered)
 #obj.drawCDF(Nsyl, Ntom, 'Nsyl', 'Ntom')
 obj.drawDotPlot(options.pair)
