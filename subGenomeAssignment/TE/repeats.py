@@ -146,8 +146,8 @@ class repeatCal(object):
             line = f.readline()
             while line:
                 s,t = line.strip().split('\t')
-                gNsyl.append(self.geneDict[s])
-                gNtom.append(self.geneDict[t])
+                gDenNsyl.append(self.geneDict[s])
+                gDenNtom.append(self.geneDict[t])
                 line = f.readline()
 
         fig = plt.figure()
