@@ -37,3 +37,14 @@ GoList_CC = [('SAGA complex', 0.0014),('chloroplast thylakoid lumen', 0.0071),
              ('plastid thylakoid lumen', 0.0071),('cytosolic ribosome', 0.0071)]
 visual(GoList_BP, GoList_MF, GoList_CC, 'Root', 'Nsyl')
 
+# Root, biased towards Ntom
+GoList_BP = [('localization', 7.6e-6),('detoxification', 3.7e-5),
+             ('serine family aminod acid metabolic process', 9.9e-5),('sulfur amino acid metabolic process', 0.00012),
+             ('cysteine metabolic process', 0.00064),('small molecule metabolic process', 0.00065)]
+GoList_MF = [('transmembrane transporter activity', 1e-7),('cofactor binding', 2.4e-6),
+             ('coenzyme binding', 6.3e-5),('antioxidant activity', 6.3e-5),
+             ('oxidoreductase activity', 7.4e-5),('small molecule binding', 0.00026)]
+GoList_CC = [('ribonuclease P complex', 0.0061),('H4/H2A histone acetyltransferase complex', 0.0121),
+             ('endoribonuclease complex', 0.0166),('endonuclease complex', 0.0166)]
+visual(GoList_BP, GoList_MF, GoList_CC, 'Root', 'Ntom')
+
