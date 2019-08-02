@@ -73,8 +73,4 @@ elif len(experiments) == 2:
     #compExpr(experiments[0], experiments[1])
 elif len(experiments) > 3:
     # print the intersection of biased genes in all given experiments
-
-
-
-
-
+    gffOp.intersection(experiments)
