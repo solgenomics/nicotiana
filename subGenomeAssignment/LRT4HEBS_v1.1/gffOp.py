@@ -91,12 +91,11 @@ def printSet(inSet, dir):
 
 
 def intersection(experiments):
-    Nsylset = []
-    Ntomset = [] # a list of sets
-    Nsylset = (set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB > 0)
-                for expr in experiments)
-    Ntomset = (set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB < 0)
-                   for expr in experiments)
+    # a list of sets
+    Nsylset = [set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB > 0)
+                for expr in experiments]
+    Ntomset = [set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB < 0)
+                   for expr in experiments]
     consistent_Nsyl = Nsylset[0].intersection((Nsylset[i] for i in range(1,len(Nsylset))))
     consistent_Ntom = Ntomset[0].intersection((Ntomset[i] for i in range(1,len(Ntomset))))
     printSet(consistent_Nsyl,'Nsyl')
