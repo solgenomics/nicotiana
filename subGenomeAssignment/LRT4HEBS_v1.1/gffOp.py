@@ -87,17 +87,20 @@ def geneCount(fileDir):
 
 def printSet(inSet, dir):
     with open(f'Intersection of genes towards {dir}.txt','w') as out:
-        (out.write(f'{gPair.h1}\t{gPair.h2}\n') for gPair in inSet)
-
+        #(out.write(f'{gPair.h1}\t{gPair.h2}\n') for gPair in inSet)
+        for gPair in inSet:
+            out.write(f'{gPair.h1}\t{gPair.h2}\n')
 
 def intersection(experiments):
     # a list of sets
-    Nsylset = [set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB > 0)
+    Nsylset = [frozenset(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB > 0)
                 for expr in experiments]
-    Ntomset = [set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB < 0)
+    Ntomset = [frozenset(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB < 0)
                    for expr in experiments]
-    consistent_Nsyl = Nsylset[0].intersection((Nsylset[i] for i in range(1,len(Nsylset))))
-    consistent_Ntom = Ntomset[0].intersection((Ntomset[i] for i in range(1,len(Ntomset))))
+    #consistent_Nsyl = Nsylset[0].intersection((Nsylset[i] for i in range(1,len(Nsylset))))
+    #consistent_Ntom = Ntomset[0].intersection((Ntomset[i] for i in range(1,len(Ntomset))))
+    consistent_Nsyl = reduce((lambda set1, set2: set1 & set2), Nsylset)
+    consistent_Ntom = reduce((lambda set1, set2: set1 & set2), Ntomset)
     printSet(consistent_Nsyl,'Nsyl')
     printSet(consistent_Ntom,'Ntom')
 
