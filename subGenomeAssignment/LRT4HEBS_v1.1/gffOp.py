@@ -4,6 +4,7 @@ from matplotlib_venn import venn3, venn3_circles, venn2
 from os import walk
 from operator import attrgetter
 import collections
+from functools import reduce 
 
 # This module contains several auxiliary functions used in homeologous gene expression bias analysis
 
