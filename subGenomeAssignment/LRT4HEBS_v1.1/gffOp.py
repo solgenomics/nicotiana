@@ -85,6 +85,24 @@ def geneCount(fileDir):
         first = False
     return countDict
 
+def printSet(inSet, dir):
+    with open(f'Intersection of genes towards {dir}.txt','w') as out:
+        (out.write(f'{gPair.h1}\t{gPair.h2}\n') for gPair in inSet)
+
+
+def intersection(experiments):
+    Nsylset = []
+    Ntomset = [] # a list of sets
+    Nsylset = (set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB > 0)
+                for expr in experiments)
+    Ntomset = (set(gPair for gPair in expr.gPairList if gPair.isSig and gPair.HEB < 0)
+                   for expr in experiments)
+    consistent_Nsyl = Nsylset[0].intersection((Nsylset[i] for i in range(1,len(Nsylset))))
+    consistent_Ntom = Ntomset[0].intersection((Ntomset[i] for i in range(1,len(Ntomset))))
+    printSet(consistent_Nsyl,'Nsyl')
+    printSet(consistent_Ntom,'Ntom')
+
+
 def draw_venn3(experiments):
     if len(experiments)==3:
         set1, set2, set3 = (set(gPair for gPair in expr.gPairList if gPair.isSig)
