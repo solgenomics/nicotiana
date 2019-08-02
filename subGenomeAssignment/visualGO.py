@@ -12,16 +12,19 @@ def visual(BP, MF, CC, tissue, bias):
     des_BP, p_BP = unpack(BP)
     des_MF, p_MF = unpack(MF)
     des_CC, p_CC = unpack(CC)
+    width = 0.25
     plt.title(f'GO terms: Genes biased towards {bias} in {tissue}')
     posCC = np.flip(np.arange(len(CC)), axis=0)
     posMF = np.flip(len(CC) + np.arange(len(MF)), axis=0)
     posBP = np.flip(len(CC) + len(MF) + np.arange(len(BP)), axis=0)
-    plt.barh(posBP, -np.log10(p_BP), color='#FF8000')
-    plt.barh(posMF, -np.log10(p_MF), color='#FF3333')
-    plt.barh(posCC, -np.log10(p_CC), color='#FFB266')
-    plt.yticks(np.arange(len(BP)+len(MF)+len(CC)), des_CC[::-1]+des_MF[::-1]+des_BP[::-1])
+    plt.barh(posBP, -np.log10(p_BP), width, color='#FF8000')
+    plt.barh(posMF, -np.log10(p_MF), width, color='#FF3333')
+    plt.barh(posCC, -np.log10(p_CC), width, color='#FFB266')
+    plt.yticks(np.arange(len(BP)+len(MF)+len(CC)), des_CC[::-1]+des_MF[::-1]+des_BP[::-1], fontsize='medium')
     plt.xlabel('-$\log_{10}(p\_value)$')
+    plt.tight_layout()
     plt.show()
+    #plt.savefig(f'go.{tissue}.{bias}.jpg', dpi=300, format='jpg', quality=95)
 
 
 
@@ -39,7 +42,7 @@ visual(GoList_BP, GoList_MF, GoList_CC, 'Root', 'Nsyl')
 
 # Root, biased towards Ntom
 GoList_BP = [('localization', 7.6e-6),('detoxification', 3.7e-5),
-             ('serine family aminod acid metabolic process', 9.9e-5),('sulfur amino acid metabolic process', 0.00012),
+             ('serine family amino acid metabolic process', 9.9e-5),('sulfur amino acid metabolic process', 0.00012),
              ('cysteine metabolic process', 0.00064),('small molecule metabolic process', 0.00065)]
 GoList_MF = [('transmembrane transporter activity', 1e-7),('cofactor binding', 2.4e-6),
              ('coenzyme binding', 6.3e-5),('antioxidant activity', 6.3e-5),

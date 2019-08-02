@@ -203,8 +203,6 @@ def compExpr(expr1, expr2):
     if len(valid_p) == 0:
         print('No gene has statistically significant change in bias expression at FDR=0.05')
         print('A plot of p-values are provided for reference.')
-        #print(f'q values{q_vals}')
-        #print(f'sorted p values {p_sorted}')
         gffOp.draw_scatter(gpTwoL, -1, expr1.name, expr2.name)
         sys.exit()
 
