@@ -3,8 +3,8 @@ source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModul
 fdr = 0.05
 dir.htseq = "C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/DEseq2/htseq/NC95 vs NC95_nic(meJA)"
 files.htseq = grep("htseq",list.files(dir.htseq),value=TRUE)
-time = c("T0","T0","T0","T2","T2","T2","T6","T6","T24","T24","T24",
-         "T0","T0","T2","T2","T6","T6","T24","T24")
+time = c("T0","T0","T0","T0120","T0120","T0120","T0480","T0480","T1440","T1440","T1440",
+         "T0","T0","T0120","T0120","T0480","T0480","T1440","T1440")
 genotype = c("nc95","nc95","nc95","nc95","nc95","nc95","nc95","nc95","nc95","nc95","nc95",
              "nc95_nic","nc95_nic","nc95_nic","nc95_nic","nc95_nic","nc95_nic","nc95_nic","nc95_nic")
 
@@ -47,11 +47,20 @@ sig.gene.NC95.vs.NC95_nic = rownames(res.LRT[which(res.LRT$padj < fdr),])
 go.sig.NC95.vs.NC95_nic = go(sig.gene.NC95.vs.NC95_nic)
 
 # Plot normalized counts of an individual gene over time
+num.sig = sum(res.LRT$padj <= fdr,na.rm=TRUE)
 library(ggplot2)
-data <- plotCounts(dds.LRT, which.min(res.LRT$padj),
+# center the title
+# since ggplot 2.0, the title is left-aligned by default
+theme_update(plot.title = element_text(hjust = 0.5))
+for (i in 1:num.sig){
+  data <- plotCounts(dds.LRT, rownames(res.LRT.ordered[i,]),
                    intgroup=c("time","strain"), returnData=TRUE)
-                              ggplot(data, aes(x=time, y=count, color=strain, group=strain)) +
-                              geom_point() + stat_smooth(se=FALSE,method="loess") + scale_y_log10()
+  ggplot(data, aes(x=time, y=count, color=strain, group=strain)) +
+  geom_point() + stat_smooth(se=FALSE,method="loess") + scale_y_log10() + ggtitle(rownames(res.LRT.ordered[i,]))
+  ggsave(paste(rownames(res.LRT.ordered[i,]),'.png',sep=""),
+  path='C:/Users/10453/Desktop/2019 Summer Research/alkaloid RNA-seq/plotCountsNC95vsNC95_nic',
+  width=6.78,height=3.12)
+}
 
 
 # log2 fold change using Wald Tests at individual time points
