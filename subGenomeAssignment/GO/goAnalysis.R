@@ -4,6 +4,6 @@ source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModul
 ### Files that provide list of genes should reside in the following directory.
 ### Otherwise please change to the appropriate working directory.
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
-go.res = goFromFile("Intersection of genes towards Nsyl.txt", 1)
+go.res = goFromFile("Intersection of genes towards Ntom.txt", 2)
 #go.res = goFromCSV("HEB.meJA_T6.towards.Ntom.csv", 2, 0.05)
 #write.csv(go.res,'meJA.T6.Root.Ntom.BP.csv')
