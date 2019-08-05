@@ -155,5 +155,7 @@ class repeatCal(object):
         plt.xlabel('TE density of Ntom homeologs')
         plt.ylabel('TE density of Nsyl homeologs')
         plt.title('TE Density Comparison between Homeologous Gene Pairs')
+        end = min(max(gDenNtom), max(gDenNtom))
+        plt.plot([0,end],[0,end],color='#000000')
         plt.savefig(f'TE Density Comp.jpg',dpi=300,format='jpg', quality=95)
 
