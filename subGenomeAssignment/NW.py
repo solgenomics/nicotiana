@@ -66,12 +66,12 @@ for i in list(range(array1.size)):
 
 
 print("NW takes {:.3f}".format(time.process_time()-start_est))
-line1, = plt.plot(pos,count1,color='red')
-line2, = plt.plot(pos,count2,color='blue')
+line1, = plt.plot(pos,np.log(np.array(count1)+1),color='blue')
+line2, = plt.plot(pos,np.log(np.array(count2)+1),color='red')
 line3, = plt.plot(pos,adjusted1,color='black')
 line4, = plt.plot(pos,adjusted2,color='magenta')
-plt.xlabel('Position along the Chromosome')
-plt.ylabel('Read Counts')
+plt.xlabel('Position along the Chromosome', fontsize='x-large')
+plt.ylabel('Read Counts',fontsize='x-large')
 plt.title('Distribution of DNA Reads along the Chromosome')
 plt.legend((line1,line2,line3,line4),(name1,name2,
     'NW estimate of {} with bandwidth {}'.format(name1,width),

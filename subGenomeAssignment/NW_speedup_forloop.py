@@ -75,17 +75,17 @@ for i in list(range(array1.size)):
 
 print("NW takes {:.3f}".format(time.process_time()-start_est))
 fig = plt.figure()
-line1, = plt.plot(pos,np.log(np.array(count1)+1),color='red')
-line2, = plt.plot(pos,np.log(np.array(count2)+1),color='blue')
-#line3, = plt.plot(pos,np.log(np.array(adjusted1)+1),color='black')
-#line4, = plt.plot(pos,np.log(np.array(adjusted2)+1),color='magenta')
+line1, = plt.plot(pos,np.log(np.array(count1)+1),color='blue')
+line2, = plt.plot(pos,np.log(np.array(count2)+1),color='red')
+line3, = plt.plot(pos,np.log(np.array(adjusted1)+1),color='black')
+line4, = plt.plot(pos,np.log(np.array(adjusted2)+1),color='magenta')
 plt.xlabel('Position along the Chromosome')
 plt.ylabel('Read Counts(log)')
 plt.title('Distribution of DNA Reads along the Chromosome')
-plt.legend((line1,line2),(name1,name2),loc="upper right", fontsize="medium")
-#plt.legend((line1,line2,line3,line4),(name1,name2,
-#    'NW estimate of {} with bandwidth {}'.format(name1,width),
-#    'NW estimate of {} with bandwidth {}'.format(name2,width)),loc='upper right',fontsize='medium')
+#plt.legend((line1,line2),(name1,name2),loc="upper right", fontsize="large")
+plt.legend((line1,line2,line3,line4),(name1,name2,
+    'NW estimate of {} with bandwidth {}'.format(name1,width),
+    'NW estimate of {} with bandwidth {}'.format(name2,width)),loc='upper right',fontsize='large')
 
 #plt.savefig(f'Changes of HEB between {name1} and {name2}.jpg',dpi=300,format='jpg', quality=95)
 plt.show()

@@ -21,10 +21,10 @@ subG2 = options.subgenome_name.split(',')[1]
 # Get color RGB value from https://www.rapidtables.com/web/color/RGB_Color.html
 def getFeature(start, end, id):
     if id == subG1:
-        customColor = colors.Color(red=(255.0/255),green=(51.0/255),blue=(51.0/255))
+        customColor = colors.Color(red=(0/255),green=(128.0/255),blue=(255.0/255))
         return (start,end,0,"",customColor,customColor)
     elif id == subG2:
-        customColor = colors.Color(red=(0/255),green=(128.0/255),blue=(255.0/255))
+        customColor = colors.Color(red=(255.0/255),green=(51.0/255),blue=(51.0/255))
         return (start,end,0,"",customColor,customColor)
     elif id == "ambiguous":
         customColor = colors.Color(red=(60.0/255),green=(179.0/255),blue=(113.0/255))
