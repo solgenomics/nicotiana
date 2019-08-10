@@ -3,6 +3,7 @@ import numpy as np
 from matplotlib_venn import venn3, venn3_circles, venn2
 from os import walk
 from operator import attrgetter
+import scipy
 import collections
 from functools import reduce 
 
@@ -206,3 +207,25 @@ def draw_hist_changeHEB(gpTwoL, p_cut, name1, name2):
     plt.title(f'$\Delta$HEB between {name1} and {name2}')
     plt.legend(loc='upper right', fontsize='small')
     plt.savefig(f'Homeologous Gene Expression Bias Changes between {name1} and {name2}.jpg', dpi=300, format='jpg', quality=95)
+
+
+def drawScatterHEB(gpL):
+    gp_nonSig = [gp for gp in gpL if not gp.isSig]
+    gp_sig = [gp for gp in gpL if gp.isSig]
+    fig = plt.figure()
+    plt.scatter([scipy.mean([gp.tpm1,gp.tpm2]) for gp in gp_nonSig], [gp.HEB for gp in gp_nonSig],
+                c='#A9A9A9', label='HEB not significant',
+                s=(plt.rcParams['lines.markersize'] ** 2)/16)
+    plt.scatter([scipy.mean([gp.tpm1,gp.tpm2]) for gp in gp_sig if gp.HEB > 0],
+                    [gp.HEB for gp in gp_sig if gp.HEB > 0], c='#0000CD', 
+                label='Significant HEB towards Nsyl',
+                s=(plt.rcParams['lines.markersize'] ** 2)/16)
+    plt.scatter([scipy.mean([gp.tpm1,gp.tpm2]) for gp in gp_sig if gp.HEB < 0], 
+                    [gp.HEB for gp in gp_sig if gp.HEB < 0], c='#FF0000', 
+                label='Significant HEB towards Ntom',
+                s=(plt.rcParams['lines.markersize'] ** 2)/16)
+    plt.xlabel(f'mean expression level')
+    plt.ylabel(f'HEB')
+    plt.title(f'HEB vs Expression Level')
+    plt.legend(loc='lower right', fontsize='small')
+    plt.savefig(f'HEB vs Expression Level.jpg',dpi=300,format='jpg', quality=95)

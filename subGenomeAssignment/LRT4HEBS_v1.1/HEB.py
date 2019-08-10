@@ -28,7 +28,7 @@ ignore_list = options.garbage.split(',')
 htseq_count_list = options.RNA.split(',')
 # you may want to check if we have recorded the exon length for every gene in the dictionary
 # also note that htseq contains some genes that are on chromosomes U,S,T and we don't include them here
-exonLen = gffOp.calcExonLen(options.gff, ignore_list)
+exonLen = gffOp.calcExonLen(options.gff, [])
 genePairDict = gffOp.getHomeoGenePair(options.homo_pair)
 
 # Next we want to perform a likelihood ratio test for each homeologous gene pair by calling the matlab functions

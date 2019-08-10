@@ -18,6 +18,8 @@ class genePair(object):
         self.exonLen1 = len1
         self.exonLen2 = len2
         self.isTestable = isTestable
+        self.tpm1 = 0
+        self.tpm2 = 0
         self.testStats = 0
         self.pValue = 0
         self.qValue = 0
@@ -36,8 +38,8 @@ class genePair(object):
 
         #print(self.pValue)
 
-    def setHEB(self, b):
-        self.HEB = b
+    #def setHEB(self, b):
+    #    self.HEB = b
 
     def setQvalue(self, q, alpha):
         self.qValue = q
@@ -46,6 +48,11 @@ class genePair(object):
 
     def isSignificant(self):
         self.isSig = True
+
+    def setTPM(self, tpm1, tpm2):
+        self.tpm1 = tpm1
+        self.tpm2 = tpm2
+        self.HEB = math.log2(tpm1/tpm2)
     
     def __eq__(self, other):
         if isinstance(other, genePair):
@@ -66,15 +73,25 @@ class experiment(object):
         self.aggParam = aggParam
         self.numReads = numReads
         self.gPairList = []
+
+        # calculate the scaling factor for TPM for each replicate
+        exonList = []
+        countList = []
+        for g,count in gc_dict.items():
+            exonList.append(exonDict[g])
+            countList.append(count)
+        T = np.sum((np.array(countList)).T/np.array(exonList), axis=1)[:,np.newaxis] # make it into a column vector
+        TPM = np.exp(np.log(np.array(countList).T+1)+np.log(1e6)-np.log(exonList)-np.log(T))
+        
         for g1,g2 in genePairDict.items():
             count1, count2 = gc_dict[g1], gc_dict[g2]
             isTestable = len([c for c in count1 if c > 0])/len(count1) >= 0.5 and len([c for c in count2 if c > 0])/len(count2) >= 0.5
             #if len([c for c in count1 if c > 0])/len(count1) >= 0.5 and len([c for c in count2 if c > 0])/len(count2) >= 0.5:
             exonLen1, exonLen2 = exonDict[g1], exonDict[g2]
             gp = genePair(g1, g2, count1, count2, exonLen1, exonLen2, isTestable)
-            self.__addHomeologousGene(gp)
+            self.__addHomeologousGene(gp, T)
 
-    def __addHomeologousGene(self, gPair):
+    def __addHomeologousGene(self, gPair, T):
         self.gPairList.append(gPair)
         if gPair.isTestable:
             L1,L0,v_H1,y_H1,v_H0,stats = self.eng.LRT_NB_HEB_v8(matlab.int64(gPair.count1), matlab.int64(gPair.count2), 
@@ -85,11 +102,15 @@ class experiment(object):
             # Does the following calculation make sense for paired-end data?
             # Can we do better with RPKM?
             # Is this still comparable across samples?
-            rpkm1 = np.mean(np.array(gPair.count1)/((gPair.exonLen1/1000)*np.array(self.numReads)))
-            rpkm2 = np.mean(np.array(gPair.count2)/((gPair.exonLen2/1000)*np.array(self.numReads)))
-            gPair.setHEB(math.log(rpkm1/rpkm2,2)) # use log base 2
+            tpm1 = np.mean(np.exp(np.log(np.array(gPair.count1)+1)+np.log(1e6)-np.log(gPair.exonLen1)-np.log(T)))
+            tpm2 = np.mean(np.exp(np.log(np.array(gPair.count2)+1)+np.log(1e6)-np.log(gPair.exonLen2)-np.log(T)))
+            #rpkm1 = np.mean(np.array(gPair.count1)/((gPair.exonLen1/1000)*np.array(self.numReads)))
+            #rpkm2 = np.mean(np.array(gPair.count2)/((gPair.exonLen2/1000)*np.array(self.numReads)))
+            #gPair.setHEB(math.log(rpkm1/rpkm2,2)) # use log base 2
+            #gPair.test(L1, L0)
+            gPair.setTPM(tpm1, tpm2)
+            #gPair.setHEB(math.log(tpm1/tpm2))
             gPair.test(L1, L0)
-        
 
     def fdr(self, alpha):
         # performs Benjamini-Hochberg multiple testing correction
@@ -138,6 +159,7 @@ class experiment(object):
         #            p = p_sorted[i]
             
         self.__plot(bias_all, bias_sig)
+        #gffOp.drawScatterHEB(self.gPairList)
 
     def __plot(self, bias_all, bias_sig):
         fig = plt.figure()
@@ -153,6 +175,8 @@ class experiment(object):
         plt.title(f'Homeologous Gene Expression Bias in N.tabacum {self.name}')
         plt.legend(loc='upper right', fontsize='small')
         plt.savefig(f'Homeologous Gene Expression Bias in N.tabacum {self.name}.jpg', dpi=300, format='jpg', quality=95)
+
+       
 
 
 class gpTwo():
