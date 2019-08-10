@@ -57,14 +57,14 @@ function [r, D] = get_R(data, plot)
     for i = 1:n
         % Initialize the rescaled data set
         temp = nan(size(data));
-        % Rescale the counts as if the had the depth of the i-th replicate
+        % Rescale the counts as if they had the depth of the i-th replicate
         for j = 1:n
             temp(:, j) = data(:, j)*D(i)/D(j);
         end
         
         % Compute the mean and the variance of the rescaled data set
-        m = mean(temp,2);
-        v = var(temp, [],2);
+        m = mean(temp,2); % take the mean by column-wise (i.e, calculate the mean for each re-scaled replicate)
+        v = var(temp, [],2); % take variance column-wise
         
         % Fit the curve
         [phi(i)] = FitVarByMean(m,v);

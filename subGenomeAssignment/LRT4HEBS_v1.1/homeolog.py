@@ -1,6 +1,7 @@
 import matlab.engine
 import math
 from scipy.stats import chi2
+from scipy import mean
 import numpy as np
 import matplotlib.pyplot as plt
 import itertools
@@ -85,8 +86,9 @@ class experiment(object):
         
         for g1,g2 in genePairDict.items():
             count1, count2 = gc_dict[g1], gc_dict[g2]
-            isTestable = len([c for c in count1 if c > 0])/len(count1) >= 0.5 and len([c for c in count2 if c > 0])/len(count2) >= 0.5
+            #isTestable = len([c for c in count1 if c > 0])/len(count1) >= 0.5 and len([c for c in count2 if c > 0])/len(count2) >= 0.5
             #if len([c for c in count1 if c > 0])/len(count1) >= 0.5 and len([c for c in count2 if c > 0])/len(count2) >= 0.5:
+            isTestable = mean(count1) >= 10 and mean(count2) >= 10
             exonLen1, exonLen2 = exonDict[g1], exonDict[g2]
             gp = genePair(g1, g2, count1, count2, exonLen1, exonLen2, isTestable)
             self.__addHomeologousGene(gp, T)
@@ -159,7 +161,7 @@ class experiment(object):
         #            p = p_sorted[i]
             
         self.__plot(bias_all, bias_sig)
-        #gffOp.drawScatterHEB(self.gPairList)
+        gffOp.drawScatterHEB(self.gPairList)
 
     def __plot(self, bias_all, bias_sig):
         fig = plt.figure()
