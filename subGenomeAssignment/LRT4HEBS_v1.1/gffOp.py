@@ -67,8 +67,8 @@ def geneCount(fileDir):
     # Fetch all files in the given directory
     f = []
     for (dirpath, dirnames, filenames) in walk(fileDir):
-        f.extend(filenames)
-        break
+        for file in sorted(filenames):
+            f.append(file)
 
     countDict = {}
     first = True

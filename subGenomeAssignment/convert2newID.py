@@ -34,7 +34,7 @@ if options.htseq != None:
 
         for file in f:
             with open(f'{dir}/{file}') as htseq_in:
-                with open(f'{file}.newAnnot','w') as htseq_out:
+                with open(f'new.{file}.htseq','w') as htseq_out:
                     line = htseq_in.readline()
                     while line:
                         if line.startswith('__'):
