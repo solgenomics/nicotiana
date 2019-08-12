@@ -1,0 +1,5 @@
+setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
+options(stringsAsFactors=FALSE)
+library(WGCNA)
+library(topGO)
+lnames = load(file="Ntab.network.RData")
