@@ -78,7 +78,7 @@ geneTree1 = bwnet$dendrograms[[1]]
 geneTree2 = bwnet$dendrograms[[2]]
 geneTree3 = bwnet$dendrograms[[3]]
 
-save(bwnet, bwModuleLabels, bwModuleColors, bwMEs, 
+save(NtabExpr, bwnet, bwModuleLabels, bwModuleColors, bwMEs, 
      geneTree1, geneTree2, geneTree3, file="Ntab.network.RData")
 
 
