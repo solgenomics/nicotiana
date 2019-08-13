@@ -11,6 +11,8 @@ parser.add_option("--go",action="store",type="string",dest="go",
                   help ="Path to the gene2GO mapping  file.")
 parser.add_option("--pair",action="store",type="string",dest="gPairs",
                   help="Path to files specifying homeologous gene pairs")
+parser.add_option("--fasta",action="store",type="string",dest="fasta",
+                  help="path to fasta files")
 (options,args) = parser.parse_args()
 
 map_file = sys.argv[1]
@@ -67,4 +69,17 @@ if options.gPairs != None:
                     pair_out.write(f'{map[g1]}\t{map[g2]}\n')
                     line = pair_in.readline()
 
+
+if options.fasta != None:
+    for file in options.fasta.split(','):
+        with open(file) as file_in:
+            with open(f"{os.path.basename(file)}.newAnnot",'w') as file_out:
+                line = file_in.readline()
+                while line:
+                    if line.startswith('>'):
+                        ID = map[line.strip()[1:]]
+                        file_out.write(f'>{ID}\n')
+                    else:
+                        file_out.write(f"{line.strip()}\n")
+                    line = file_in.readline()
 

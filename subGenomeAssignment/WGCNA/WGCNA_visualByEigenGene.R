@@ -18,9 +18,3 @@ par(cex = 0.9)
 plotEigengeneNetworks(MEs, "Eigengene heatmap", marHeatmap=c(3,4,2,2),
                       plotDendrograms = FALSE, xLabelsAngle=90)
 
-# get the number of nodes in each module
-color.set = unique(bwModuleColors)
-for (color in color.set){
-  count = sum(bwModuleColors==color)
-  print(count)
-}
