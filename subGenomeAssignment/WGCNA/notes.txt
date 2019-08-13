@@ -1,0 +1,2 @@
+rawCounts1: genes are filtered based on their raw counts. (average counts across samples greater than 10)
+rawCounts2: genes are filtered based on TPM (average TPM across samples greater than 1)
