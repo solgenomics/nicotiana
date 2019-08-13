@@ -37,3 +37,9 @@ df = as.data.frame(data, row.names=1:length(color.set))
 colnames(df) = c("total","S subgenome","T subgenome","ambiguous")
 write.csv(df,"WGCNA_summaryBySubgenome.csv")
 
+source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModule.R")
+for (color in color.set){
+  gene.subset = colnames(NtabExpr[,bwModuleColors == color])
+  go.result = go(gene.subset)
+  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/GO.network.',color,'.csv',sep=""))
+}

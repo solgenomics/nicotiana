@@ -26,12 +26,16 @@ goFromFile = function(Infile, col){
 }
 
 ### Given a list of genes, return the result of GO Enrichment Analysis.
-go = function(gList){
+go = function(gList, AHRD=TRUE){
   #print(gList)
   ### GO enrichment analysis
   setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO")
   library(topGO)
-  geneID2GO <- readMappings(file = "gene2go.ahrd")
+  geneID2GO = readMappings(file="gene2go.ahrd")
+  if (!AHRD){
+    geneID2GO = readMappings(file = "Ntab.gene2go.interproscan")
+  }
+  
   # the gene universe is given by the following line
   # A total of 34056 genes get one or more GO terms assigned to it
   geneNames = names(geneID2GO)
