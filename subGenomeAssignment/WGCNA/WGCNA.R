@@ -1,7 +1,7 @@
 library(WGCNA)
-setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
+setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round1")
 options(stringsAsFactors=FALSE)
-NtabData = read.csv("rlog.count.csv")
+NtabData = read.csv("rlog.count2.csv")
 # each row is the gene expression data (rlog transformed) of all genes in each condition
 NtabExpr = as.data.frame(t(NtabData[,-1]))
 names(NtabExpr) = NtabData$X
@@ -12,7 +12,7 @@ sampleTree = hclust(dist(NtabExpr), method = "average");
 # Plot the sample tree: Open a graphic output window of size 12 by 9 inches
 # The user should change the dimensions if the window is too large or too small.
 sizeGrWindow(12,9)
-pdf(file = "Plots/sampleClustering.pdf", width = 12, height = 9);
+#pdf(file = "Plots/sampleClustering.pdf", width = 12, height = 9);
 par(cex = 0.6);
 par(mar = c(0,4,2,0))
 plot(sampleTree, main = "Sample clustering to detect outliers", sub="", xlab="", cex.lab = 1.5,
@@ -44,7 +44,7 @@ plot(sft$fitIndices[,1], sft$fitIndices[,5],
 text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 # from the plot, it appears that 12 is a good candidate for soft-thresholding power
 
-bwnet = blockwiseModules(NtabExpr, power = 12,maxBlockSize=16000,
+bwnet = blockwiseModules(NtabExpr, power = 12,maxBlockSize=14000,
                        TOMType = "unsigned", minModuleSize = 20,
                        reassignThreshold = 0, mergeCutHeight = 0.25,
                        numericLabels = TRUE, pamRespectsDendro = FALSE,
