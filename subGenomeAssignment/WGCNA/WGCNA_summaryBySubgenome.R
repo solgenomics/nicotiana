@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('rbh.v1.blastp.newAnnot','r')
+con = file('non.sig.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
