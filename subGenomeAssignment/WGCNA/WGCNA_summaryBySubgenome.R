@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('C:/Users/10453/source/repos/HEB/rbh.v1.blastp.newAnnot','r')
+con = file('rbh.v1.blastp.newAnnot','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
@@ -70,7 +70,7 @@ total.pair = 0
 sameModule = 0
 similarModule = 0
 divergentModule = 0
-eigenGene.matrix = as.matrix(bwMEs)
+eigenGene.matrix = t(as.matrix(bwMEs))
 maxDist = max(dist(eigenGene.matrix, method="euclidean"))
 
 for (Nsyl.g in keys(h)){
@@ -103,7 +103,9 @@ for (Nsyl.g in keys(h)){
 
 library(ggplot2)
 df = data.frame(
-  category=c("same module","similar module","divergent module"),
+  category=c(sprintf("same module(%s)", sameModule),
+             sprintf("similar module(%s)", similarModule),
+             sprintf("divergent module(%s)", divergentModule)),
   num = c(sameModule, similarModule, divergentModule)
 )
 bp<- ggplot(df, aes(x="", y=num, fill=category))+
