@@ -1,0 +1,3 @@
+rawCounts1: genes are filtered based on their raw counts. (average counts across samples greater than 10)
+rawCounts2: genes are filtered based on TPM (average TPM across samples greater than 1)
+All results in round1 are obtained from 34 datasets without replicates. All RNA-seq datasets are either different tissues or the same tissue under different conditions.
