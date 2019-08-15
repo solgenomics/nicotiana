@@ -73,6 +73,6 @@ if len(experiments) == 2:
     gffOp.draw_venn2(experiments)
     #compExpr(experiments[0], experiments[1])
 
-if len(experiments) >= 2:
-    # print the intersection of biased genes in all given experiments
-    gffOp.intersection(experiments)
+#if len(experiments) >= 2:
+#    # print the intersection of biased genes in all given experiments
+#    gffOp.intersection(experiments)

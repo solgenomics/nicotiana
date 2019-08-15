@@ -1,0 +1,2 @@
+datasets of leaf and shoot are pooled together for analysis
+mid_leaf rep2 from PMI and shoot_Zt6_rep1 are delted because they seem to be outliers after clustering

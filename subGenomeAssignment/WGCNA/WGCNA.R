@@ -1,7 +1,7 @@
 library(WGCNA)
-setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round1")
+setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round2")
 options(stringsAsFactors=FALSE)
-NtabData = read.csv("rlog.count2.csv")
+NtabData = read.csv("rlog.count.csv")
 # each row is the gene expression data (rlog transformed) of all genes in each condition
 NtabExpr = as.data.frame(t(NtabData[,-1]))
 names(NtabExpr) = NtabData$X
@@ -37,6 +37,8 @@ text(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
      labels=powers,cex=cex1,col="red");
 # this line corresponds to using an R^2 cut-off of h
 abline(h=0.90,col="red")
+abline(h=0.85,col="black")
+abline(h=0.80,col="blue")
 # Mean connectivity as a function of the soft-thresholding power
 plot(sft$fitIndices[,1], sft$fitIndices[,5],
      xlab="Soft Threshold (power)",ylab="Mean Connectivity", type="n",
@@ -49,7 +51,7 @@ bwnet = blockwiseModules(NtabExpr, power = 12,maxBlockSize=14000,
                        reassignThreshold = 0, mergeCutHeight = 0.25,
                        numericLabels = TRUE, pamRespectsDendro = FALSE,
                        saveTOMs = TRUE,
-                       saveTOMFileBase = "Ntab-blockwise",
+                       saveTOMFileBase = "Ntab-blockwise",networkType="signed",
                        verbose = 3)
 
 # plotting
