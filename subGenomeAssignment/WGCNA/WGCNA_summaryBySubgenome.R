@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('non.sig.txt','r')
+con = file('consensus.Ntom.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
@@ -72,6 +72,7 @@ similarModule = 0
 divergentModule = 0
 eigenGene.matrix = t(as.matrix(bwMEs))
 maxDist = max(dist(eigenGene.matrix, method="euclidean"))
+d = vector()
 
 for (Nsyl.g in keys(h)){
   Ntom.g = h[[Nsyl.g]]
@@ -81,11 +82,13 @@ for (Nsyl.g in keys(h)){
     next
   }
   total.pair = total.pair + 1
-  if (Nsyl.label != Ntom.label){
+  Nsyl.ME = bwMEs[,paste('ME',Nsyl.label,sep="")]
+  Ntom.ME = bwMEs[,paste('ME',Ntom.label,sep="")]
+  dist = sqrt(sum((Nsyl.ME - Ntom.ME)^2))
+  d = c(d,dist)
+  if (dist != 0){
     # check how divergent these two modules are
-    Nsyl.ME = bwMEs[,paste('ME',Nsyl.label,sep="")]
-    Ntom.ME = bwMEs[,paste('ME',Ntom.label,sep="")]
-    if (sqrt(sum((Nsyl.ME-Ntom.ME)^2)) <= 0.5*maxDist){
+    if (dist <= 0.5*maxDist){
       similarModule = similarModule + 1
     }else{
       divergentModule = divergentModule + 1
@@ -102,6 +105,10 @@ for (Nsyl.g in keys(h)){
 }
 
 library(ggplot2)
+
+# first draw a histogram of dist between all homoelogs
+qplot(d, geom="histogram")
+# plot pie chart and save it to disk
 df = data.frame(
   category=c(sprintf("same module(%s)", sameModule),
              sprintf("similar module(%s)", similarModule),
@@ -125,4 +132,6 @@ library(scales)
 pie + scale_fill_grey() +  blank_theme +
   theme(axis.text.x=element_blank()) +
   geom_text(aes(label = percent(num/total.pair)),size=5, 
-            position = position_stack(vjust = 0.5))
+            position = position_stack(vjust = 0.5)) + ggtitle("T-biased homoelogs module-assignment in co-expression network")
+ggsave("T-biased homoelogs module-assignment.png",
+       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round2')
