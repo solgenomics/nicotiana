@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round1/Ntab.network.2.RData")
+lnames = load(file="./round2/Ntab.network.RData")
 
 Glist = function(Infile){
   glist = list()
@@ -36,7 +36,7 @@ for (color.index in 0:(length(color.set)-1)){
 
 df = as.data.frame(data, row.names=1:length(color.set))
 colnames(df) = c("total","S subgenome","T subgenome","ambiguous")
-write.csv(df,"WGCNA_summaryBySubgenome.2.csv")
+write.csv(df,"WGCNA_summaryBySubgenome.csv")
 
 
 # GO term anaylsis for each module
