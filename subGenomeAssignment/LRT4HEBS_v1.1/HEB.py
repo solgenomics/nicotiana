@@ -12,9 +12,7 @@ parser.add_option("-f","--file",action="store",type="string",dest="gff",
 parser.add_option("-i","--ignore",action="store",type="string",dest="garbage",
                   help="A list of scaffolds that you'd like to ignore in downstream analysis")
 parser.add_option("-r","--rna",action="store",type="string",dest="RNA",
-                  help="path to htseq-count output of RNA-seq alignment. Replicates should be delimited by comma.\
-                  You can provide all htseq outputs from different experiment settings, but make sure specify the\
-                  number of replicates each experiment has.")
+                  help="path to directories that contain htseq output files. Delimit multiple directories by comma.")
 parser.add_option('--name', action="store",type="string",dest="names",
                   help="Name for each experiment")
 # In our file, each line is a homeologous gene pair. 
