@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round2/Ntab.network.RData")
+lnames = load(file="./round3/Ntab.network.RData")
 
 Glist = function(Infile){
   glist = list()
@@ -43,8 +43,8 @@ write.csv(df,"WGCNA_summaryBySubgenome.csv")
 source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModule.R")
 for (color in color.set){
   gene.subset = colnames(NtabExpr[,bwModuleColors == color])
-  go.result = go(gene.subset, FALSE)
-  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round1/GO.network.',color,'.csv',sep=""))
+  go.result = go(gene.subset)
+  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/AHRD/GO.network.',color,'.csv',sep=""))
 }
 
 # analyze genes in terms of homeologous pairs
@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('consensus.Ntom.txt','r')
+con = file('non.sig.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
@@ -132,6 +132,6 @@ library(scales)
 pie + scale_fill_grey() +  blank_theme +
   theme(axis.text.x=element_blank()) +
   geom_text(aes(label = percent(num/total.pair)),size=5, 
-            position = position_stack(vjust = 0.5)) + ggtitle("T-biased homoelogs module-assignment in co-expression network")
-ggsave("T-biased homoelogs module-assignment.png",
-       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round2')
+            position = position_stack(vjust = 0.5)) + ggtitle("unbiased homoelogs module-assignment in co-expression network")
+ggsave("unbiased homoelogs module-assignment.png",
+       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3')

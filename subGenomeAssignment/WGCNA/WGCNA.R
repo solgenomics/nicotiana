@@ -1,7 +1,7 @@
 library(WGCNA)
-setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round2")
+setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3")
 options(stringsAsFactors=FALSE)
-NtabData = read.csv("rlog.count.csv")
+NtabData = read.csv("rlog.counts.csv")
 # each row is the gene expression data (rlog transformed) of all genes in each condition
 NtabExpr = as.data.frame(t(NtabData[,-1]))
 names(NtabExpr) = NtabData$X

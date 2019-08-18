@@ -74,6 +74,7 @@ def geneCount(fileDir):
     first = True
     for file in f:
         with open(f'{fileDir}/{file}') as htseq_count:
+            print(file)
             line = htseq_count.readline()
             while line:
                 if not line.startswith('__'): # the last few lines that start with __ in htseq-count output are summary stats
