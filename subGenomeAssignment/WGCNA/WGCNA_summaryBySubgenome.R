@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round3/Ntab.network.RData")
+lnames = load(file="./round4/Ntab.network.RData")
 
 Glist = function(Infile){
   glist = list()
@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('non.sig.txt','r')
+con = file('consensus.Ntom.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
@@ -132,6 +132,6 @@ library(scales)
 pie + scale_fill_grey() +  blank_theme +
   theme(axis.text.x=element_blank()) +
   geom_text(aes(label = percent(num/total.pair)),size=5, 
-            position = position_stack(vjust = 0.5)) + ggtitle("unbiased homoelogs module-assignment in co-expression network")
-ggsave("unbiased homoelogs module-assignment.png",
-       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3')
+            position = position_stack(vjust = 0.5)) + ggtitle("S-biased homoelogs module-assignment in co-expression network")
+ggsave("S-biased homoelogs module-assignment.png",
+       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round4')

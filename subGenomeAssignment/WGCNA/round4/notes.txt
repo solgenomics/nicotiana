@@ -1,0 +1,6 @@
+This co-expression network was constructed solely from RNA-seq of leaf.
+Including PMI, MaxPlanck and the virus-infected leaf data.
+97 datasets in total
+mid_leaf rep2 was deleted because it showed as an outlier after clustering
+so a total of 96 datasets were used for downstream analysis
+soft threshold used: 16
