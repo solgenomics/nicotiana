@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('consensus.Ntom.txt','r')
+con = file('consensus.Nsyl.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
