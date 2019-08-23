@@ -11,7 +11,7 @@ for (dirpaths, dirnames, filenames) in walk(fileDir):
     for file in filenames:
         df = pd.read_csv(f"./{fileDir}/{file}", sep=",", header=0)
         for s,t,q in zip(df.Nsyl, df.Ntom, df.q_value):
-            dict[(s,t)].append(q > 0.05)
+            dict[(s,t)].append(q <= 0.05)
 
     #for file in [file for file in filenames if 'Nsyl' in file]:
     #    df_Nsyl = pd.read_csv(f"./{fileDir}/{file}", sep=",", header=0)
@@ -28,7 +28,7 @@ for (dirpaths, dirnames, filenames) in walk(fileDir):
 
     #    nonSig.append(frozenset(map(tuple, zip(df_Nsyl.Nsyl + df_Ntom.Nsyl, df_Nsyl.Ntom + df_Ntom.Ntom))))
 
-with open('non.sig.txt','w') as output:
+with open('80%.S-biased.txt','w') as output:
     for pair,indicator in dict.items():
         if indicator.count(True)/len(indicator) >= 0.8:
             output.write(f"{pair[0]}\t{pair[1]}\n")
