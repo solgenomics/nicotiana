@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('consensus.Nsyl.txt','r')
+con = file('80%.T-biased.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
@@ -127,11 +127,12 @@ blank_theme <- theme_minimal()+
     axis.ticks = element_blank(),
     plot.title=element_text(size=14, face="bold")
   )
+
 # Apply blank theme
 library(scales)
 pie + scale_fill_grey() +  blank_theme +
   theme(axis.text.x=element_blank()) +
   geom_text(aes(label = percent(num/total.pair)),size=5, 
-            position = position_stack(vjust = 0.5)) + ggtitle("S-biased homoelogs module-assignment in co-expression network")
-ggsave("S-biased homoelogs module-assignment.png",
+            position = position_stack(vjust = 0.5)) + ggtitle("T-biased homoelogs module-assignment in co-expression network")
+ggsave("80%% T-biased homoelogs module-assignment.png",
        path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round4')

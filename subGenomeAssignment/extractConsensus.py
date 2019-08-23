@@ -9,6 +9,7 @@ dict = defaultdict(lambda:[])
 fileDir = sys.argv[1]
 for (dirpaths, dirnames, filenames) in walk(fileDir):
     for file in filenames:
+        print(file)
         df = pd.read_csv(f"./{fileDir}/{file}", sep=",", header=0)
         for s,t,q in zip(df.Nsyl, df.Ntom, df.q_value):
             dict[(s,t)].append(q <= 0.05)
@@ -28,8 +29,10 @@ for (dirpaths, dirnames, filenames) in walk(fileDir):
 
     #    nonSig.append(frozenset(map(tuple, zip(df_Nsyl.Nsyl + df_Ntom.Nsyl, df_Nsyl.Ntom + df_Ntom.Ntom))))
 
+#print(len(dict))
 with open('80%.S-biased.txt','w') as output:
     for pair,indicator in dict.items():
+        #print(indicator)
         if indicator.count(True)/len(indicator) >= 0.8:
             output.write(f"{pair[0]}\t{pair[1]}\n")
 
