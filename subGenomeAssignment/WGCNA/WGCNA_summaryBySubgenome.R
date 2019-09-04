@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round4/Ntab.network.RData")
+lnames = load(file="./round3/Ntab.network.RData")
 
 Glist = function(Infile){
   glist = list()
@@ -18,8 +18,8 @@ Glist = function(Infile){
 }
 
 #first get a list of genes in each subgenome
-Nsyl.list = Glist("gene.Nsyl.v1.ID")
-Ntom.list = Glist("gene.Ntom.v1.ID")
+Nsyl.list = Glist("80%.S-biased.txt")
+Ntom.list = Glist("80%.T-biased.txt")
 color.set = unique(bwModuleColors)
 colnames = c("total","S subgenome","T subgenome", "ambiguous")
 data = matrix(NA,nrow=length(color.set),ncol=length(colnames))
@@ -44,7 +44,7 @@ source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModul
 for (color in color.set){
   gene.subset = colnames(NtabExpr[,bwModuleColors == color])
   go.result = go(gene.subset)
-  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/AHRD/GO.network.',color,'.csv',sep=""))
+  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/AHRD(80%)/GO.network.',color,'.csv',sep=""))
 }
 
 # analyze genes in terms of homeologous pairs
