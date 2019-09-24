@@ -25,6 +25,21 @@ goFromFile = function(Infile, col){
   return (go(gene.list))
 }
 
+goFromFileBothColumn = function(Infile){
+  gene.list = list()
+  con = file(Infile, "r")
+  while(TRUE){
+    line = readLines(con, n=1)
+    if (length(line) == 0){
+      break
+    }
+    gene.list = c(gene.list, strsplit(trimws(line),"\t")[[1]])
+    
+  }
+  close(con)
+  return (go(gene.list))
+}
+
 ### Given a list of genes, return the result of GO Enrichment Analysis.
 go = function(gList, AHRD=TRUE){
   #print(gList)

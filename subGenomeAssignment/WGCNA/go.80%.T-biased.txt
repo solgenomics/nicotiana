@@ -1,0 +1,41 @@
+        GO.ID                                        Term Annotated Significant Expected classic
+1  GO:0044281            small molecule metabolic process      2614         126    85.11 6.7e-06
+2  GO:0017144                      drug metabolic process      1283          71    41.77 1.2e-05
+3  GO:0019752           carboxylic acid metabolic process      1516          80    49.36 1.8e-05
+4  GO:0043436                   oxoacid metabolic process      1560          81    50.79 2.8e-05
+5  GO:0006082              organic acid metabolic process      1564          81    50.92 3.0e-05
+6  GO:0006810                                   transport      4569         196   148.77 3.1e-05
+7  GO:0055114                 oxidation-reduction process      4781         203   155.67 4.1e-05
+8  GO:0006820                             anion transport       372          28    12.11 4.2e-05
+9  GO:0051234               establishment of localization      4656         198   151.60 4.7e-05
+10 GO:0006732                  coenzyme metabolic process       483          33    15.73 6.2e-05
+11 GO:0051186                  cofactor metabolic process       885          51    28.82 7.2e-05
+12 GO:0051179                                localization      4726         199   153.88 7.9e-05
+13 GO:0055085                     transmembrane transport      2476         114    80.62 0.00012
+14 GO:1901605          alpha-amino acid metabolic process       463          31    15.08 0.00015
+15 GO:0006520       cellular amino acid metabolic process       787          45    25.62 0.00022
+16 GO:0015711                     organic anion transport       203          17     6.61 0.00038
+17 GO:0044248                  cellular catabolic process      1680          80    54.70 0.00048
+18 GO:1901615 organic hydroxy compound metabolic proce...       228          18     7.42 0.00053
+19 GO:0015849                      organic acid transport       107          11     3.48 0.00075
+20 GO:0046942                   carboxylic acid transport       107          11     3.48 0.00075
+21 GO:0016054              organic acid catabolic process       110          11     3.58 0.00094
+22 GO:0046395           carboxylic acid catabolic process       110          11     3.58 0.00094
+23 GO:0009069 serine family amino acid metabolic proce...        97          10     3.16 0.00125
+24 GO:0090407        organophosphate biosynthetic process       761          41    24.78 0.00130
+25 GO:0042737                      drug catabolic process       486          29    15.82 0.00145
+26 GO:0006811                               ion transport      1388          66    45.19 0.00151
+27 GO:0072524 pyridine-containing compound metabolic p...       230          17     7.49 0.00153
+28 GO:0098869             cellular oxidant detoxification       404          25    13.15 0.00183
+29 GO:0097237        cellular response to toxic substance       409          25    13.32 0.00216
+30 GO:1990748                     cellular detoxification       409          25    13.32 0.00216
+31 GO:0098754                              detoxification       412          25    13.41 0.00238
+32 GO:0046653          tetrahydrofolate metabolic process        43           6     1.40 0.00256
+33 GO:0072525 pyridine-containing compound biosyntheti...       185          14     6.02 0.00309
+34 GO:0009056                           catabolic process      2010          88    65.45 0.00311
+35 GO:0033306                    phytol metabolic process         3           2     0.10 0.00311
+36 GO:0034355                                 NAD salvage         3           2     0.10 0.00311
+37 GO:1903173             fatty alcohol metabolic process         3           2     0.10 0.00311
+38 GO:0009108               coenzyme biosynthetic process       376          23    12.24 0.00314
+39 GO:0006575 cellular modified amino acid metabolic p...       110          10     3.58 0.00320
+40 GO:0001505       regulation of neurotransmitter levels        45           6     1.47 0.00324

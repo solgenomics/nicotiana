@@ -1,0 +1,41 @@
+        GO.ID                                        Term Annotated Significant Expected classic
+1  GO:0071840 cellular component organization or bioge...      3994         944   661.96 < 1e-30
+2  GO:0016043             cellular component organization      3671         859   608.43 2.1e-29
+3  GO:0006996                      organelle organization      2183         555   361.81 1.5e-27
+4  GO:0006396                              RNA processing      1149         332   190.43 2.5e-26
+5  GO:0070647 protein modification by small protein co...       963         276   159.61 1.7e-21
+6  GO:0010467                             gene expression      6173        1281  1023.11 2.9e-21
+7  GO:0016071                      mRNA metabolic process       542         177    89.83 1.9e-20
+8  GO:0016070                       RNA metabolic process      5068        1073   839.97 2.2e-20
+9  GO:0007005                  mitochondrion organization       140          70    23.20 6.7e-20
+10 GO:0006397                             mRNA processing       437         150    72.43 8.9e-20
+11 GO:0051641                       cellular localization      1103         287   182.81 5.0e-16
+12 GO:0044265    cellular macromolecule catabolic process       630         184   104.42 1.2e-15
+13 GO:0008380                                RNA splicing       325         112    53.87 2.8e-15
+14 GO:0032446 protein modification by small protein co...       829         226   137.40 3.5e-15
+15 GO:0044085               cellular component biogenesis      1383         339   229.22 1.0e-14
+16 GO:0051649       establishment of localization in cell       984         257   163.09 1.1e-14
+17 GO:0000375 RNA splicing, via transesterification re...       240          88    39.78 4.5e-14
+18 GO:0000377 RNA splicing, via transesterification re...       240          88    39.78 4.5e-14
+19 GO:0016567                      protein ubiquitination       799         212   132.43 4.6e-13
+20 GO:0022613        ribonucleoprotein complex biogenesis       518         150    85.85 1.1e-12
+21 GO:0032502                       developmental process      1516         356   251.26 1.1e-12
+22 GO:0009791                  post-embryonic development       724         194   120.00 1.7e-12
+23 GO:0065007                       biological regulation      7018        1359  1163.16 4.1e-12
+24 GO:0050789            regulation of biological process      6129        1198  1015.82 1.1e-11
+25 GO:0044267          cellular protein metabolic process      7729        1478  1281.00 1.6e-11
+26 GO:0046907                     intracellular transport       923         231   152.98 2.3e-11
+27 GO:0044743 protein transmembrane import into intrac...        71          36    11.77 3.6e-11
+28 GO:0048856            anatomical structure development      1403         326   232.53 3.7e-11
+29 GO:0043632 modification-dependent macromolecule cat...       437         127    72.43 4.3e-11
+30 GO:0019941 modification-dependent protein catabolic...       429         125    71.10 5.1e-11
+31 GO:0006511 ubiquitin-dependent protein catabolic pr...       421         123    69.78 6.0e-11
+32 GO:0007275          multicellular organism development      1176         279   194.91 1.0e-10
+33 GO:0000398              mRNA splicing, via spliceosome       218          74    36.13 2.9e-10
+34 GO:0006605                           protein targeting       208          71    34.47 5.0e-10
+35 GO:0022607                 cellular component assembly       924         225   153.14 6.1e-10
+36 GO:0071806             protein transmembrane transport       101          43    16.74 6.2e-10
+37 GO:0006325                      chromatin organization       487         134    80.72 7.1e-10
+38 GO:0043412                  macromolecule modification      6140        1182  1017.64 7.5e-10
+39 GO:0034622 cellular protein-containing complex asse...       615         161   101.93 8.3e-10
+40 GO:0034613               cellular protein localization       815         202   135.08 9.8e-10

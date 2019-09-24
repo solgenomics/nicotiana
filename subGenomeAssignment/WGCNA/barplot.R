@@ -12,7 +12,7 @@ df_root$module = factor(df_root$module,
 
 
 df_root_08 = data.frame(
-  gene = rep(c('unbiased','S-biased','T-biased'),each=3),
+  gene = rep(c('unbiased(4367)','S-biased(1115)','T-biased(967)'),each=3),
   module = rep(c('same module','similar module','divergent module'),3),
   percentage = c(41.6, 27.9, 30.5, 
                  26.2, 30, 43.8, 
@@ -34,7 +34,7 @@ df_leaf$module = factor(df_leaf$module,
 
 
 df_leaf_08 = data.frame(
-  gene = rep(c('unbiased','S-biased','T-biased'),each=3),
+  gene = rep(c('unbiased(4225)','S-biased(987)','T-biased(866)'),each=3),
   module = rep(c('same module','similar module','divergent module'),3),
   percentage = c(44.8, 29.1, 26.2, 
                  23.6, 28.6, 47.8, 

@@ -1,0 +1,41 @@
+        GO.ID                                        Term Annotated Significant Expected classic
+1  GO:0055085                     transmembrane transport      2476          99    68.60 0.00016
+2  GO:0055114                 oxidation-reduction process      4781         171   132.46 0.00026
+3  GO:0006952                            defense response       550          28    15.24 0.00169
+4  GO:0006810                                   transport      4569         158   126.59 0.00193
+5  GO:0051234               establishment of localization      4656         160   129.00 0.00232
+6  GO:0051179                                localization      4726         162   130.94 0.00241
+7  GO:0042737                      drug catabolic process       486          25    13.47 0.00254
+8  GO:0005975              carbohydrate metabolic process      2036          78    56.41 0.00255
+9  GO:0019674                       NAD metabolic process        35           5     0.97 0.00263
+10 GO:0046486              glycerolipid metabolic process       335          19     9.28 0.00279
+11 GO:0043648         dicarboxylic acid metabolic process       108           9     2.99 0.00315
+12 GO:0016999                antibiotic metabolic process       375          20    10.39 0.00438
+13 GO:0017144                      drug metabolic process      1283          52    35.55 0.00440
+14 GO:0009056                           catabolic process      2010          75    55.69 0.00577
+15 GO:0046173                 polyol biosynthetic process        28           4     0.78 0.00706
+16 GO:0006108                    malate metabolic process        29           4     0.80 0.00802
+17 GO:0006811                               ion transport      1388          54    38.46 0.00826
+18 GO:0072350        tricarboxylic acid metabolic process       104           8     2.88 0.00841
+19 GO:0006650       glycerophospholipid metabolic process       297          16     8.23 0.00923
+20 GO:0072348                   sulfur compound transport        66           6     1.83 0.00988
+21 GO:0042908                        xenobiotic transport       129           9     3.57 0.00994
+22 GO:0016128              phytosteroid metabolic process        32           4     0.89 0.01137
+23 GO:0016129           phytosteroid biosynthetic process        32           4     0.89 0.01137
+24 GO:0006400                           tRNA modification       133           9     3.68 0.01198
+25 GO:0006518                   peptide metabolic process      1636          61    45.33 0.01220
+26 GO:0006412                                 translation      1578          59    43.72 0.01287
+27 GO:0071554        cell wall organization or biogenesis       965          39    26.74 0.01298
+28 GO:0046165                alcohol biosynthetic process        71           6     1.97 0.01388
+29 GO:0043043                peptide biosynthetic process      1585          59    43.91 0.01397
+30 GO:0017001                antibiotic catabolic process       239          13     6.62 0.01654
+31 GO:0006820                             anion transport       372          18    10.31 0.01670
+32 GO:0009435                    NAD biosynthetic process        20           3     0.55 0.01701
+33 GO:0071555                      cell wall organization       778          32    21.56 0.01830
+34 GO:0043603            cellular amide metabolic process      1803          65    49.95 0.01910
+35 GO:0046655                folic acid metabolic process         8           2     0.22 0.01922
+36 GO:0006020                  inositol metabolic process        21           3     0.58 0.01944
+37 GO:0045229 external encapsulating structure organiz...       786          32    21.78 0.02078
+38 GO:0043604                  amide biosynthetic process      1687          61    46.74 0.02150
+39 GO:0019751                    polyol metabolic process        58           5     1.61 0.02212
+40 GO:0006099                    tricarboxylic acid cycle       101           7     2.80 0.02238
