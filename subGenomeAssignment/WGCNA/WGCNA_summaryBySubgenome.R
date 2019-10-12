@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round4/Ntab.network.RData")
+lnames = load(file="./round5/Ntab.network.RData")
 
 Glist = function(Infile){
   glist = list()
@@ -18,8 +18,8 @@ Glist = function(Infile){
 }
 
 #first get a list of genes in each subgenome
-Nsyl.list = Glist("80%.S-biased.txt")
-Ntom.list = Glist("80%.T-biased.txt")
+Nsyl.list = Glist("gene.Nsyl.v1.ID")
+Ntom.list = Glist("gene.Ntom.v1.ID")
 color.set = unique(bwModuleColors)
 colnames = c("total","S subgenome","T subgenome", "ambiguous")
 data = matrix(NA,nrow=length(color.set),ncol=length(colnames))
@@ -44,7 +44,7 @@ source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModul
 for (color in color.set){
   gene.subset = colnames(NtabExpr[,bwModuleColors == color])
   go.result = go(gene.subset)
-  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/AHRD(80%)/GO.network.',color,'.csv',sep=""))
+  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round5/AHRD/GO.network.',color,'.csv',sep=""))
 }
 
 # analyze genes in terms of homeologous pairs
@@ -53,7 +53,7 @@ for (color in color.set){
 
 # first load a file specifying homeologous gene pairs and store them in a dictionary
 library(hash)
-con = file('80%.S-biased.txt','r')
+con = file('non.sig.txt','r')
 h = hash()
 while(TRUE){
   line = readLines(con,n = 1)
@@ -133,6 +133,6 @@ library(scales)
 pie + scale_fill_grey() +  blank_theme +
   theme(axis.text.x=element_blank()) +
   geom_text(aes(label = percent(num/total.pair)),size=5, 
-            position = position_stack(vjust = 0.5)) + ggtitle("S-biased homoelogs module-assignment in co-expression network")
-ggsave("80%% S-biased homoelogs module-assignment.png",
-       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round4')
+            position = position_stack(vjust = 0.5)) + ggtitle("unbiased homoelogs module-assignment in co-expression network")
+ggsave("80%% un-biased homoelogs module-assignment.png",
+       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round5')

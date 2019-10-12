@@ -1,5 +1,5 @@
 library(WGCNA)
-setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round4")
+setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round5")
 options(stringsAsFactors=FALSE)
 NtabData = read.csv("rlog.counts.csv")
 # each row is the gene expression data (rlog transformed) of all genes in each condition
