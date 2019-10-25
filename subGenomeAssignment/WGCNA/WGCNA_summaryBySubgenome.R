@@ -18,8 +18,8 @@ Glist = function(Infile){
 }
 
 #first get a list of genes in each subgenome
-Nsyl.list = Glist("gene.Nsyl.v1.ID")
-Ntom.list = Glist("gene.Ntom.v1.ID")
+Nsyl.list = Glist("gene.Nsyl.v1.ID.txt")
+Ntom.list = Glist("gene.Ntom.v1.ID.txt")
 color.set = unique(bwModuleColors)
 colnames = c("total","S subgenome","T subgenome", "ambiguous")
 data = matrix(NA,nrow=length(color.set),ncol=length(colnames))
