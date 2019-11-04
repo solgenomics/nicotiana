@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round5/Ntab.network.RData")
+lnames = load(file="./round3/Ntab.network.RData")
 
 Glist = function(Infile){
   glist = list()
@@ -40,12 +40,21 @@ write.csv(df,"WGCNA_summaryBySubgenome.csv")
 
 
 # GO term anaylsis for each module
+color.set = unique(bwModuleColors)
 source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModule.R")
-for (color in color.set){
-  gene.subset = colnames(NtabExpr[,bwModuleColors == color])
+for (color in 0:(length(color.set)-1)){
+  gene.subset = colnames(NtabExpr[,bwnet$colors==color])
   go.result = go(gene.subset)
-  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round5/AHRD/GO.network.',color,'.csv',sep=""))
+  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/AHRD/GO.network.',color,'.csv',sep=""))
 }
+
+
+
+#for (color in color.set){
+#  gene.subset = colnames(NtabExpr[,bwModuleColors == color])
+#  go.result = go(gene.subset)
+#  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round5/AHRD/GO.network.',color,'.csv',sep=""))
+#}
 
 # analyze genes in terms of homeologous pairs
 # task: how many homeologous genes belong to the same module?
