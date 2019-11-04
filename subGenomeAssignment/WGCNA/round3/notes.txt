@@ -2,3 +2,4 @@ this is a root-specific co-expression network
 consists of data from 2017 paper, jasmonate experiment, and the biocontrol agent sample from NCBI
 a total of 42 datasets
 soft-threshold power used: 16
+

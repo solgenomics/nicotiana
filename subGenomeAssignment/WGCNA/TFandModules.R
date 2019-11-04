@@ -15,24 +15,62 @@ for(TFfamily in TFs$TF.family.name){
 
 
 color.set = unique(bwModuleColors)
-data = matrix(NA,nrow=length(color.set),ncol=length(h))
-#colnames(data) = TFs$TF.family.name
+data_raw = matrix(NA,nrow=length(color.set),ncol=length(h))
+data_test = matrix(NA, nrow=length(color.set), ncol=length(h))
+
+total.gene.count = length(NtabExpr)
+total.TFs.count = sum(TFs$number.of.TFs)
 for (color.index in 0:(length(color.set)-1)){
   gene.subset = colnames(NtabExpr[,bwnet$colors==color.index])
-  count = c()
+  count.list = c()
+  p.value.list = c()
   for(TFfamily in TFs$TF.family.name){
-    #list.of.TFs = strsplit(h[[TFfamily]],',')
-    count = c(count, sum(h[[TFfamily]] %in% gene.subset))
+    overlap = sum(h[[TFfamily]] %in% gene.subset)
+    count.list = c(count.list, overlap)
+    data = matrix(data=c(overlap, length(gene.subset)-overlap, length(h[[TFfamily]])-overlap, 
+                          total.gene.count-length(gene.subset)-length(h[[TFfamily]])+overlap), 
+                   nrow=2)
+    p.value = fisher.test(data)$p.value
+    p.value.list = c(p.value.list, p.value)
   }
-  data[color.index+1,] = count
+  data_raw[color.index+1,] = count.list
+  data_test[color.index+1,] = p.value.list
 }
 
-df = as.data.frame(data, row.names=1:length(color.set))
-colnames(df) = TFs$TF.family.name
-write.csv(df,"combined.module.TF.summary.csv")
+df_raw = as.data.frame(data_raw, row.names=1:length(color.set))
+df_test = as.data.frame(data_test, row.names=1:length(color.set))
+colnames(df_raw) = TFs$TF.family.name
+colnames(df_test) = TFs$TF.family.name
+#write.csv(df_raw,"combined.module.TF.summary.csv")
+write.csv(df_test, "combined.module.TF.fisher.test.csv")
 
 
 #compare the root and leaf modules
+#goal: test whether there is significant overlap between root and leaf co-expression modules
+#avoid variable clobbering!
+load(file="./round3/Ntab.network.RData")
+NtabExpr.root = NtabExpr
+bwnet.root = bwnet
+load(file="./round4/Ntab.network.RData")
+NtabExpr.leaf = NtabExpr
+bwnet.leaf = bwnet
 
-
-
+total.gene.count.root = length(NtabExpr.root)
+total.gene.count.leaf = length(NtabExpr.leaf)
+color.set.root = unique(bwnet.root$colors)
+color.set.leaf = unique(bwnet.leaf$colors)
+data.p.value = matrix(NA, nrow=length(color.set.root), ncol=length(color.set.leaf))
+for (root.index in 0:(length(color.set.root)-1)){
+  gene.subset.root = colnames(NtabExpr.root[,bwnet.root$colors==root.index])
+  p.value.list = c()
+  for(leaf.index in 0:(length(color.set.leaf)-1)){
+    gene.subset.leaf = colnames(NtabExpr.leaf[,bwnet.leaf$colors==leaf.index])
+    overlap = sum(gene.subset.root %in% gene.subset.leaf)
+    data = matrix(data = c(overlap, length(gene.subset.leaf)-overlap,length(gene.subset.root)-overlap,
+                                     total.gene.count.leaf-length(gene.subset.leaf)-length(gene.subset.root)+overlap), nrow=2)
+    p.value.list = c(p.value.list, fisher.test(data)$p.value)
+  }
+  data.p.value[root.index+1, ]=p.value.list
+}
+df = as.data.frame(data.p.value, row.names=1:length(color.set.root), col.names=1:length(color.set.leaf))
+write.csv(df, 'module.overlap.fisher.test.root.vs.leaf.csv')
