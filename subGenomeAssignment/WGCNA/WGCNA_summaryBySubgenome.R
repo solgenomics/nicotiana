@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round3/Ntab.network.RData")
+lnames = load(file="./round3/Ntab.network.Rdata")
 
 Glist = function(Infile){
   glist = list()
@@ -45,7 +45,7 @@ source("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/GO/goModul
 for (color in 0:(length(color.set)-1)){
   gene.subset = colnames(NtabExpr[,bwnet$colors==color])
   go.result = go(gene.subset)
-  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/AHRD/GO.network.',color,'.csv',sep=""))
+  write.csv(go.result, paste('C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3/GO.network.',color,'.csv',sep=""))
 }
 
 

@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round5/Ntab.network.RData")
+lnames = load(file="./round4/Ntab.network.RData")
 # create a mapping from geneID to its TF family
 library(hash)
 h = hash()
@@ -41,8 +41,8 @@ df_raw = as.data.frame(data_raw, row.names=1:length(color.set))
 df_test = as.data.frame(data_test, row.names=1:length(color.set))
 colnames(df_raw) = TFs$TF.family.name
 colnames(df_test) = TFs$TF.family.name
-#write.csv(df_raw,"combined.module.TF.summary.csv")
-write.csv(df_test, "combined.module.TF.fisher.test.csv")
+write.csv(df_raw,"leaf.module.TF.summary.csv")
+write.csv(df_test, "leaf.module.TF.fisher.test.csv")
 
 
 #compare the root and leaf modules
