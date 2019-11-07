@@ -1,7 +1,7 @@
 setwd("C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA")
 options(stringsAsFactors=FALSE)
 library(WGCNA)
-lnames = load(file="./round4/Ntab.network.Rdata")
+lnames = load(file="./round3/Ntab.network.Rdata")
 
 Glist = function(Infile){
   glist = list()
@@ -143,5 +143,5 @@ pie + scale_fill_grey() +  blank_theme +
   theme(axis.text.x=element_blank()) +
   geom_text(aes(label = percent(num/total.pair)),size=5, 
             position = position_stack(vjust = 0.5)) + ggtitle("unbiased homoelogs module-assignment in co-expression network")
-ggsave("80%% un-biased homoelogs module-assignment.png",
-       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round5')
+ggsave("unbiased homoelogs module-assignment.png",
+       path='C:/Users/10453/source/repos/SGN/nicotiana/subGenomeAssignment/WGCNA/round3')
